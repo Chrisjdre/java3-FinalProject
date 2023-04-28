@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="connections">
+    <connection type="Azure.MySQL:Jetbrains.IJModule" envPrefix="AZURE_MYSQL">
+      <resource type="Azure.MySQL">f0bc4640593b3a676f36e1e92146c9f7</resource>
+      <consumer type="Jetbrains.IJModule">java3-FinalProject</consumer>
+    </connection>
+  </component>
+</project>

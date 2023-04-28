@@ -1,0 +1,55 @@
+<%@ page import="dev.katsute.mal4j.manga.Manga" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<Manga> mangaList = (List<Manga>) request.getAttribute("mangaList");
+    String q = (String)request.getAttribute("mangaSearch");
+    String error = (String)request.getAttribute("error");
+    if(mangaList == null){
+        mangaList = new ArrayList<>();
+    }
+%>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search for Manga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <jsp:include page="../nav.jsp"></jsp:include>
+</head>
+<body>
+<div class="d-flex justify-content-center m-4">
+   <h1>Search for Manga</h1>
+</div>
+<form class="d-flex m-4" role="search">
+    <input class="form-control mx-auto p-2" style="width: 30%;" type="search" placeholder="Search" aria-label="Search" name="q" value="<%=q%>">
+</form>
+<div class="d-flex justify-content-center m-4">
+    <button class="btn btn-outline-success mx-auto" type="submit">Search</button>
+</div>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    <% for (Manga manga: mangaList) {%>
+    <a href="manga?<%=manga.getID()%>">
+        <div class="col">
+            <div class="card h-50">
+                <img src="<%= manga.getMainPicture().getLargeURL() %>" class="card-img-top" alt="<%=manga.getTitle()%>">
+                <div class="card-body">
+                    <h5 class="card-title"><%=manga.getTitle()%></h5>
+                    <%--                <p class="card-text"><%= anime.getSynopsis() %></p>--%>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <%}%>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+</html>
